@@ -1,6 +1,5 @@
 # Intel Arc Pro B50 on Debian 13
 
-
 This guide explains how I got my **Intel Arc Pro B50** graphics card working on **Debian 13 (Ventana)**. It is based on my hardware:
 
 | Component | Description |
