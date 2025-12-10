@@ -1,5 +1,6 @@
 # Intel Arc Pro B50 on Debian 13
 
+
 This guide explains how I got my **Intel Arc Pro B50** graphics card working on **Debian 13 (Ventana)**. It is based on my hardware:
 
 | Component | Description |
@@ -41,7 +42,7 @@ apt update
 apt install firmware-intel-graphics
 ```
 
-## 4. Install Firmware 6.16.xx
+## 4. Upgrade to Kernel 6.16+
 With Kernel 6.16+, you can monitor GPU parameters such as temperature, fan speed, and utilization using `nvtop`. Run with `sudo nvtop`. This kernel version also provides improved driver compatibility with Intel BattleMage GPUs.
 
 ```bash
