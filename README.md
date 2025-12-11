@@ -7,6 +7,17 @@ This guide explains how I got my **Intel Arc Pro B50** graphics card working on 
   <sub><em>My Homeserver (December 2025)</em></sub>
 </p>
 
+1. [Hardware](#hardware)
+2. [Installation](#installation)
+   1. [Move NVMe to chipset M.2 slot](#1-move-nvme-to-chipset-m2-slot)
+   2. [BIOS Settings](#2-bios-settings)
+   3. [Install the Firmware](#3-install-the-firmware)
+   4. [Upgrade to Kernel 6.16+](#4-upgrade-to-kernel-616)
+   5. [Install oneAPI](#5-install-oneapi)
+3. [Ollama (inside a Ubuntu 24.04 Docker-Container)](#ollama-inside-a-ubuntu-2404-docker-container)
+   1. [Installation](#installation-1)
+   2. [Models that I tried with Ollama](#models-that-i-tried-with-ollama)
+
 ---
 ## Hardware
 
