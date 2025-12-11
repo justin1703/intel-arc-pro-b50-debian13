@@ -1,0 +1,15 @@
+services:
+  ollama:
+    build: .
+    container_name: ollama
+    privileged: true
+    devices:
+      - /dev/dri:/dev/dri
+    volumes:
+      - ./ollama-data:/root/.ollama
+    ports:
+      - "11434:11434"
+    environment:
+      - OLLAMA_INTEL_GPU=true
+      - OLLAMA_HOST=0.0.0.0:11434
+    tty: true
