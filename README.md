@@ -75,3 +75,41 @@ sudo sh ./intel-oneapi-base-toolkit-2025.2.0.592_offline.sh -a --silent --eula a
 ```
 
 > ⚠️ After installing the new kernel or oneAPI toolkit, a system reboot is recommended.
+
+---
+## Ollama (inside a Ubuntu 24.04 Docker-Container)
+I was not able to run Ollama on Debian 13 with the Intel Arc Pro B50 due to no drivers from Intel. 
+
+### Installation
+
+Run a Ubuntu 24.04 Container with the following command after installing docker:
+```bash
+docker run -it --name intel-gpu   --device=/dev/dri:/dev/dri   ubuntu:24.04 bash
+```
+
+After you are inside the Container run the following in order to setup Ollama:
+```bash
+ls /dev/dri/
+apt-get update
+apt-get install -y software-properties-common
+add-apt-repository -y ppa:kobuk-team/intel-graphics
+apt-get install -y libze-intel-gpu1 libze1 intel-metrics-discovery intel-opencl-icd clinfo intel-gsc
+apt-get install -y libze-dev intel-ocloc
+export OLLAMA_INTEL_GPU=true
+cd /tmp/
+apt install wget
+wget https://github.com/ipex-llm/ipex-llm/releases/download/v2.3.0-nightly/ollama-ipex-llm-2.3.0b20250630-ubuntu.tgz
+tar -xvf  ollama-ipex-llm-2.3.0b20250630-ubuntu.tgz 
+cd ollama-ipex-llm-2.3.0b20250630-ubuntu
+./start-ollama.sh 
+apt install screen
+screen
+./ollama run <llm-model>
+```
+
+### tested Models
+
+| Model | Working? |
+|------------|-------------|
+| **llama2:latest** | no |
+| **deepseek-r1:14b** | yes |
