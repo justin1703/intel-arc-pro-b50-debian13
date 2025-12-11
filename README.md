@@ -22,11 +22,6 @@ This guide explains how I got my **Intel Arc Pro B50** graphics card working on 
    1. [Installation inside a default Ubuntu 24.04 Container](#installation-inside-a-default-ubuntu-2404-container)
    2. [Models that I tried with Ollama](#models-that-i-tried-with-ollama)
 4. [Setup a prepared Compose file running Ollama on 0.0.0.0](#setup-a-prepared-compose-file-running-ollama-on-0000)
-   1. [Required Files](#required-files)
-   2. [Clone the Repository](#clone-the-repository)
-   3. [Build the Dockerfile](#build-the-dockerfile)
-   4. [Run the Container](#run-the-container)
-   5. [Verify Ollama is Running](#verify-ollama-is-running)
 
 ---
 ## Hardware
