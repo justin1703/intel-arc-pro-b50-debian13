@@ -1,6 +1,14 @@
 # Intel Arc Pro B50 on Debian 13
+This guide explains how I got my **Intel Arc Pro B50** graphics card working on **Debian 13 (Ventana)**. 
 
-This guide explains how I got my **Intel Arc Pro B50** graphics card working on **Debian 13 (Ventana)**. It is based on my hardware:
+<p align="center">
+  <img src="ressources/homeserver.jpg" width="500" alt="Homeserver">
+  <br>
+  <sub><em>My Homeserver (December 2025)</em></sub>
+</p>
+
+---
+## Hardware
 
 | Component | Description |
 |------------|-------------|
@@ -14,8 +22,9 @@ This guide explains how I got my **Intel Arc Pro B50** graphics card working on 
 | **Case** | Jonsbo N4 NAS case – compact design with room for multiple 3.5" HDDs |
 
 ---
+## Installation
 
-## 1. Move NVMe to chipset M.2 slot
+### 1. Move NVMe to chipset M.2 slot
 
 In my case the NVMe drive needed to be installed in the **chipset M.2 slot** instead of the CPU M.2 slot.  
 
@@ -23,7 +32,7 @@ In my case the NVMe drive needed to be installed in the **chipset M.2 slot** ins
 
 ---
 
-## 2. BIOS Settings
+### 2. BIOS Settings
 
 - Enable **4G Decoding**  
 - Enable **Resizable BAR**  
@@ -34,14 +43,14 @@ After reboot, check if the GPU is detected:
 lspci -nnk | grep -iA3 vga
 ```
 
-## 3. Install the Firmware
+### 3. Install the Firmware
 
 ```bash
 apt update
 apt install firmware-intel-graphics
 ```
 
-## 4. Upgrade to Kernel 6.16+
+### 4. Upgrade to Kernel 6.16+
 With Kernel 6.16+, you can monitor GPU parameters such as temperature, fan speed, and utilization using `nvtop`. Run with `sudo nvtop`. This kernel version also provides improved driver compatibility with Intel BattleMage GPUs.
 
 ```bash
@@ -58,7 +67,7 @@ You can check for the currently installed kernel with this command:
 ls /boot/vmlinuz-*
 ```
 
-## 5. Install oneAPI
+### 5. Install oneAPI
 
 ```bash
 wget https://registrationcenter-download.intel.com/akdlm/IRC_NAS/bd1d0273-a931-4f7e-ab76-6a2a67d646c7/intel-oneapi-base-toolkit-2025.2.0.592_offline.sh
