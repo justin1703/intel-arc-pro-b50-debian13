@@ -145,8 +145,8 @@ screen
 This guide explains how to run **Ollama IPEX-LLM** with an **Intel Arc Pro B50** GPU inside a Docker container on Debian 13.
 
 Required files:
-- [Dockerfile](Docker/Dockerfile) – Basis-Image und Installation von Ollama IPEX-LLM
-- [docker-compose.yml](Docker/docker-compose.yml) – Startet den Container mit GPU-Zugriff
+- [Dockerfile](Docker/Dockerfile) – base image and installation of Ollama IPEX-LLM
+- [docker-compose.yml](Docker/docker-compose.yml) – starts the container with the gpu 
 
 Clone the repository:
 ```bash
