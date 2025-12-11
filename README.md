@@ -13,14 +13,20 @@ This guide explains how I got my **Intel Arc Pro B50** graphics card working on 
 
 1. [Hardware](#hardware)
 2. [Installation](#installation)
-   1. [Move NVMe to chipset M.2 slot](#1-move-nvme-to-chipset-m2-slot)
-   2. [BIOS Settings](#2-bios-settings)
-   3. [Install the Firmware](#3-install-the-firmware)
-   4. [Upgrade to Kernel 6.16+](#4-upgrade-to-kernel-616)
-   5. [Install oneAPI](#5-install-oneapi)
+   2.1. [Move NVMe to chipset M.2 slot](#1-move-nvme-to-chipset-m2-slot)
+   2.2. [BIOS Settings](#2-bios-settings)
+   2.3. [Install the Firmware](#3-install-the-firmware)
+   2.4. [Upgrade to Kernel 6.16+](#4-upgrade-to-kernel-616)
+   2.5. [Install oneAPI](#5-install-oneapi)
 3. [Ollama (inside a Ubuntu 24.04 Docker-Container)](#ollama-inside-a-ubuntu-2404-docker-container)
-   1. [Installation](#installation-1)
-   2. [Models that I tried with Ollama](#models-that-i-tried-with-ollama)
+   3.1. [Installation inside a default Ubuntu 24.04 Container](#installation-inside-a-default-ubuntu-2404-container)
+   3.2. [Models that I tried with Ollama](#models-that-i-tried-with-ollama)
+4. [Setup a prepared Compose file running Ollama on 0.0.0.0](#setup-a-prepared-compose-file-running-ollama-on-0000)
+   4.1. [Required Files](#required-files)
+   4.2. [Clone the Repository](#clone-the-repository)
+   4.3. [Build the Dockerfile](#build-the-dockerfile)
+   4.4. [Run the Container](#run-the-container)
+   4.5. [Verify Ollama is Running](#verify-ollama-is-running)
 
 ---
 ## Hardware
@@ -95,7 +101,7 @@ sudo sh ./intel-oneapi-base-toolkit-2025.2.0.592_offline.sh -a --silent --eula a
 ## Ollama (inside a Ubuntu 24.04 Docker-Container)
 I was not able to run Ollama on Debian 13 with the Intel Arc Pro B50 due to no drivers from Intel. 
 
-### Installation
+### Installation inside a default Ubuntu 24.04 Container
 
 Run a Ubuntu 24.04 Container with the following command after installing docker:
 ```bash
@@ -133,3 +139,32 @@ screen
 |------------|-------------|
 | **llama2:latest** | ❌ |
 | **deepseek-r1:14b** | ✅ |
+
+
+### Setup a prepared Compose file which is running Ollama on 0.0.0.0
+This guide explains how to run **Ollama IPEX-LLM** with an **Intel Arc Pro B50** GPU inside a Docker container on Debian 13.
+
+Required files:
+- [Dockerfile](Docker/Dockerfile) – Basis-Image und Installation von Ollama IPEX-LLM
+- [docker-compose.yml](Docker/docker-compose.yml) – Startet den Container mit GPU-Zugriff
+
+Clone the repository:
+```bash
+git clone git@github.com:justin1703/intel-arc-pro-b50-debian13.git
+cd intel-arc-pro-b50-debian13/Docker
+```
+
+Build the Dockerfile:
+```bash
+docker compose build
+```
+
+Run the Container:
+```bash
+docker compose up -d
+```
+
+You can try if its working by either checking http://<HOST_IP>::11434 or you can run this command:
+```bash
+docker exec -it ollama ./ollama list
+```
