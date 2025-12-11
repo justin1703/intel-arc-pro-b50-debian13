@@ -107,9 +107,9 @@ screen
 ./ollama run <llm-model>
 ```
 
-### tested Models
+### Models that I tried with Ollama
 
 | Model | Working? |
 |------------|-------------|
-| **llama2:latest** | no |
-| **deepseek-r1:14b** | yes |
+| **llama2:latest** | ❌ |
+| **deepseek-r1:14b** | ✅ |
