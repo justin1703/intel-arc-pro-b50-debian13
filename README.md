@@ -96,6 +96,9 @@ sudo sh ./intel-oneapi-base-toolkit-2025.2.0.592_offline.sh -a --silent --eula a
 ## Ollama (inside a Ubuntu 24.04 Docker-Container)
 I was not able to run Ollama on Debian 13 with the Intel Arc Pro B50 due to no drivers from Intel. 
 
+> ⚠️ This setup is based on the [Intel IPEX LLM Quickstart guide](https://github.com/intel/ipex-llm/blob/main/docs/mddocs/Quickstart/ollama_portable_zip_quickstart.md#linux-quickstart).
+
+
 ### Installation inside a default Ubuntu 24.04 Container
 
 Run a Ubuntu 24.04 Container with the following command after installing docker:
@@ -168,3 +171,8 @@ You can try if its working by either checking http://<HOST_IP>::11434 or you can
 ```bash
 docker exec -it ollama ./ollama list
 ```
+
+## References
+
+- Intel IPEX LLM Quickstart (Linux): [GitHub link](https://github.com/intel/ipex-llm/blob/main/docs/mddocs/Quickstart/ollama_portable_zip_quickstart.md#linux-quickstart)
+
