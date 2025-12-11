@@ -7,6 +7,10 @@ This guide explains how I got my **Intel Arc Pro B50** graphics card working on 
   <sub><em>My Homeserver (December 2025)</em></sub>
 </p>
 
+---
+
+# Table of Contents
+
 1. [Hardware](#hardware)
 2. [Installation](#installation)
    1. [Move NVMe to chipset M.2 slot](#1-move-nvme-to-chipset-m2-slot)
