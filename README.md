@@ -121,6 +121,11 @@ apt install screen
 screen
 ./ollama run <llm-model>
 ```
+<p align="center">
+  <img src="ressources/nvtop.jpg" width="500" alt="Intel Arc Pro B50 in nvtop">
+  <br>
+  <sub><em>Intel Arc Pro B50 in nvtop when running deepseek-r1:14b</em></sub>
+</p>
 
 ### Models that I tried with Ollama
 
