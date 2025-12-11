@@ -122,11 +122,15 @@ apt install screen
 screen
 ./ollama run <llm-model>
 ```
+---
+
 <p align="center">
   <img src="ressources/nvtop.jpg" width="500" alt="Intel Arc Pro B50 in nvtop">
   <br>
   <sub><em>Intel Arc Pro B50 in nvtop when running deepseek-r1:14b</em></sub>
 </p>
+
+---
 
 ### Models that I tried with Ollama
 
@@ -135,6 +139,7 @@ screen
 | **llama2:latest** | ❌ |
 | **deepseek-r1:14b** | ✅ |
 
+---
 
 ### Setup a prepared Compose file which is running Ollama on 0.0.0.0
 This guide explains how to run **Ollama IPEX-LLM** with an **Intel Arc Pro B50** GPU inside a Docker container on Debian 13.
