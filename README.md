@@ -19,9 +19,9 @@ This guide explains how I got my **Intel Arc Pro B50** graphics card working on 
    4. [Upgrade to Kernel 6.16+](#4-upgrade-to-kernel-616)
    5. [Install oneAPI](#5-install-oneapi)
 3. [Ollama (inside a Ubuntu 24.04 Docker-Container)](#ollama-inside-a-ubuntu-2404-docker-container)
-   1. [Installation inside a default Ubuntu 24.04 Container](#installation-inside-a-default-ubuntu-2404-container)
+   1. [Setup a prepared Compose file running Ollama](#setup-a-prepared-compose-file-running-ollama)
    2. [Models that I tried with Ollama](#models-that-i-tried-with-ollama)
-4. [Setup a prepared Compose file running Ollama on 0.0.0.0](#setup-a-prepared-compose-file-running-ollama-on-0000)
+  
 
 ---
 ## Hardware
