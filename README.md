@@ -124,10 +124,12 @@ Run the Container:
 docker compose up -d
 ```
 
-You can try if its working by either checking http://<HOST_IP>::11434 or you can run this command:
+You can try if Ollama is working by either checking http://<HOST_IP>::11434 or you can run this command:
 ```bash
-docker exec -it ollama ./ollama list
+docker exec -it ollama ./ollama -v
 ```
+
+Open-WebUI should now be running on "http://<HOST_IP>:3000".
 
 ---
 
@@ -147,8 +149,4 @@ docker exec -it ollama ./ollama list
 | **deepseek-r1:14b** | ✅ |
 
 ---
-
-## References
-
-- Intel IPEX LLM Quickstart (Linux): [GitHub link](https://github.com/intel/ipex-llm/blob/main/docs/mddocs/Quickstart/ollama_portable_zip_quickstart.md#linux-quickstart)
 
