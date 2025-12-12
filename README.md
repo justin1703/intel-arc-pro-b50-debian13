@@ -1,5 +1,5 @@
 # Intel Arc Pro B50 on Debian 13
-This guide explains how I got my **Intel Arc Pro B50** graphics card working on **Debian 13 (Ventana)**. 
+This guide explains how I got my **Intel Arc Pro B50** graphics card working on **Debian 13 (Trixie)**. 
 
 <p align="center">
   <img src="ressources/homeserver.jpg" width="500" alt="Homeserver">
@@ -93,58 +93,12 @@ sudo sh ./intel-oneapi-base-toolkit-2025.2.0.592_offline.sh -a --silent --eula a
 > ⚠️ After installing the new kernel or oneAPI toolkit, a system reboot is recommended.
 
 ---
-## Ollama (inside a Ubuntu 24.04 Docker-Container)
+## Ollama (inside a Ubuntu 24.04 Docker-Container) and Open-WebUI
 I was not able to run Ollama on Debian 13 with the Intel Arc Pro B50 due to no drivers from Intel. 
 
-> ⚠️ This setup is based on the [Intel IPEX LLM Quickstart guide](https://github.com/intel/ipex-llm/blob/main/docs/mddocs/Quickstart/ollama_portable_zip_quickstart.md#linux-quickstart).
+> ⚠️ This setup is based on the [Intel IPEX LLM Quickstart guide](https://github.com/intel/ipex-llm/blob/main/docs/mddocs/Quickstart/ollama_portable_zip_quickstart.md#linux-quickstart) and [Installing Client GPUs on Ubuntu Desktop]([https://github.com/intel/ipex-llm/blob/main/docs/mddocs/Quickstart/ollama_portable_zip_quickstart.md#linux-quickstart](https://dgpu-docs.intel.com/driver/client/overview.html)).
 
-
-### Installation inside a default Ubuntu 24.04 Container
-
-Run a Ubuntu 24.04 Container with the following command after installing docker:
-```bash
-docker run -it --name intel-gpu   --device=/dev/dri:/dev/dri   ubuntu:24.04 bash
-```
-
-After you are inside the Container run the following in order to setup Ollama:
-```bash
-ls /dev/dri/
-apt-get update
-apt-get install -y software-properties-common
-add-apt-repository -y ppa:kobuk-team/intel-graphics
-apt-get install -y libze-intel-gpu1 libze1 intel-metrics-discovery intel-opencl-icd clinfo intel-gsc
-apt-get install -y libze-dev intel-ocloc
-export OLLAMA_INTEL_GPU=true
-cd /tmp/
-apt install wget
-wget https://github.com/ipex-llm/ipex-llm/releases/download/v2.3.0-nightly/ollama-ipex-llm-2.3.0b20250630-ubuntu.tgz
-tar -xvf  ollama-ipex-llm-2.3.0b20250630-ubuntu.tgz 
-cd ollama-ipex-llm-2.3.0b20250630-ubuntu
-./start-ollama.sh 
-apt install screen
-screen
-./ollama run <llm-model>
-```
----
-
-<p align="center">
-  <img src="ressources/nvtop.jpg" width="500" alt="Intel Arc Pro B50 in nvtop">
-  <br>
-  <sub><em>Intel Arc Pro B50 in nvtop when running deepseek-r1:14b</em></sub>
-</p>
-
----
-
-### Models that I tried with Ollama
-
-| Model | Working? |
-|------------|-------------|
-| **llama2:latest** | ❌ |
-| **deepseek-r1:14b** | ✅ |
-
----
-
-### Setup a prepared Compose file which is running Ollama on 0.0.0.0
+### Setup a prepared Compose file which is running Ollama
 This guide explains how to run **Ollama IPEX-LLM** with an **Intel Arc Pro B50** GPU inside a Docker container on Debian 13.
 
 Required files:
@@ -171,6 +125,25 @@ You can try if its working by either checking http://<HOST_IP>::11434 or you can
 ```bash
 docker exec -it ollama ./ollama list
 ```
+
+---
+
+<p align="center">
+  <img src="ressources/nvtop.jpg" width="500" alt="Intel Arc Pro B50 in nvtop">
+  <br>
+  <sub><em>Intel Arc Pro B50 in nvtop when running deepseek-r1:14b</em></sub>
+</p>
+
+---
+
+### Models that I tried with Ollama
+
+| Model | Working? |
+|------------|-------------|
+| **llama2:latest** | ❌ |
+| **deepseek-r1:14b** | ✅ |
+
+---
 
 ## References
 
