@@ -147,6 +147,8 @@ Open-WebUI should now be running on "http://<HOST_IP>:3000".
 |------------|-------------|
 | **llama2:latest** | ❌ |
 | **deepseek-r1:14b** | ✅ |
+| **gemma3:12b** | ✅ |
+| **gemma3:27b** | ✅ |
 
 ---
 
