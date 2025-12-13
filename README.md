@@ -95,16 +95,16 @@ sudo sh ./intel-oneapi-base-toolkit-2025.2.0.592_offline.sh -a --silent --eula a
 ## Ollama (inside a Ubuntu 24.04 Docker-Container) and Open-WebUI
 I was not able to run Ollama on Debian 13 with the Intel Arc Pro B50 due to no drivers from Intel. 
 
+> ⚠️ This setup is based on the 
+> [Intel IPEX LLM Quickstart guide](https://github.com/intel/ipex-llm/blob/main/docs/mddocs/Quickstart/ollama_portable_zip_quickstart.md#linux-quickstart) 
+> and 
+> [Installing Client GPUs on Ubuntu Desktop](https://dgpu-docs.intel.com/driver/client/overview.html).
+
 <p align="center">
   <img src="ressources/webui.jpg" width="500" alt="Open WebUI with Ollama backend on Intel Arc Pro B50">
   <br>
   <sub><em>Open Open WebUI with Ollama backend on Intel Arc Pro B50 </em></sub>
 </p>
-
-> ⚠️ This setup is based on the 
-> [Intel IPEX LLM Quickstart guide](https://github.com/intel/ipex-llm/blob/main/docs/mddocs/Quickstart/ollama_portable_zip_quickstart.md#linux-quickstart) 
-> and 
-> [Installing Client GPUs on Ubuntu Desktop](https://dgpu-docs.intel.com/driver/client/overview.html).
 
 ### Setup a prepared Compose file which is running Ollama
 This guide explains how to run **Ollama IPEX-LLM** with an **Intel Arc Pro B50** GPU inside a Docker container on Debian 13.
