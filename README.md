@@ -20,7 +20,6 @@ This guide explains how I got my **Intel Arc Pro B50** graphics card working on 
    5. [Install oneAPI](#5-install-oneapi)
 3. [Ollama (inside a Ubuntu 24.04 Docker-Container)](#ollama-inside-a-ubuntu-2404-docker-container)
    1. [Setup a prepared Compose file which is running Ollama](#setup-a-prepared-compose-file-which-is-running-ollama)
-   2. [Models that I tried with Ollama](#models-that-i-tried-with-ollama)
   
 
 ---
@@ -96,6 +95,12 @@ sudo sh ./intel-oneapi-base-toolkit-2025.2.0.592_offline.sh -a --silent --eula a
 ## Ollama (inside a Ubuntu 24.04 Docker-Container) and Open-WebUI
 I was not able to run Ollama on Debian 13 with the Intel Arc Pro B50 due to no drivers from Intel. 
 
+<p align="center">
+  <img src="ressources/webui.jpg" width="500" alt="Open WebUI with Ollama backend on Intel Arc Pro B50">
+  <br>
+  <sub><em>Open Open WebUI with Ollama backend on Intel Arc Pro B50 </em></sub>
+</p>
+
 > ⚠️ This setup is based on the 
 > [Intel IPEX LLM Quickstart guide](https://github.com/intel/ipex-llm/blob/main/docs/mddocs/Quickstart/ollama_portable_zip_quickstart.md#linux-quickstart) 
 > and 
@@ -138,16 +143,6 @@ Open-WebUI should now be running on "http://<HOST_IP>:3000".
   <br>
   <sub><em>Intel Arc Pro B50 in nvtop when running deepseek-r1:14b</em></sub>
 </p>
-
----
-
-### Models that I tried with Ollama
-
-| Model | Working? |
-|------------|-------------|
-| **deepseek-r1:14b** | ✅ |
-| **gemma3:12b** | ✅ |
-| **gemma3:27b** | ✅ |
 
 ---
 
