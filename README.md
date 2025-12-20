@@ -103,7 +103,7 @@ I was not able to run Ollama on Debian 13 with the Intel Arc Pro B50 due to no d
 <p align="center">
   <img src="ressources/webui.jpg" width="500" alt="Open WebUI with Ollama backend on Intel Arc Pro B50">
   <br>
-  <sub><em>Open Open WebUI with Ollama backend on Intel Arc Pro B50 </em></sub>
+  <sub><em>Open WebUI with Ollama backend on Intel Arc Pro B50 </em></sub>
 </p>
 
 ### Setup a prepared Compose file which is running Ollama
