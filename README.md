@@ -1,8 +1,9 @@
 # Intel Arc Pro B50 on Debian 13
-This guide explains how I got my **Intel Arc Pro B50** graphics card working on **Debian 13 (Trixie)**. 
+
+This guide documents the steps required to get an **Intel Arc Pro B50** graphics card fully operational on **Debian 13 (Trixie)**.
 
 <p align="center">
-  <img src="ressources/homeserver.jpg" width="500" alt="Homeserver">
+  <img src="resources/homeserver.jpg" width="500" alt="Homeserver">
   <br>
   <sub><em>My Homeserver (December 2025)</em></sub>
 </p>
@@ -18,10 +19,9 @@ This guide explains how I got my **Intel Arc Pro B50** graphics card working on 
    3. [Install the Firmware](#3-install-the-firmware)
    4. [Upgrade to Kernel 6.16+](#4-upgrade-to-kernel-616)
    5. [Install oneAPI](#5-install-oneapi)
-3. [Ollama (inside a Ubuntu 24.04 Docker-Container)](#ollama-inside-a-ubuntu-2404-docker-container)
-   1. [Setup a prepared Compose file which is running Ollama](#setup-a-prepared-compose-file-which-is-running-ollama)
+3. [Ollama (inside an Ubuntu 24.04 Docker-Container)](#ollama-inside-an-ubuntu-2404-docker-container)
+   1. [Running Ollama using a prepared Docker Compose setup](#running-ollama-using-a-prepared-docker-compose-setup)
   
-
 ---
 ## Hardware
 
@@ -31,7 +31,7 @@ This guide explains how I got my **Intel Arc Pro B50** graphics card working on 
 | **RAM** | 128 GB DDR4 @ 3200 MT/s – originally for many VMs under Proxmox, now provides plenty of headroom for containers and caching |
 | **System Drive** | 2 TB NVMe SSD – high I/O performance for system, Docker containers, and databases |
 | **Data Storage** | 2 × 4 TB HDD – plenty of space for media, backups, and persistent data |
-| **GPU** | Intel Arc Pro B50 with 16 GB VRAM – powerful for LLM workloads and Plex transcoding |
+| **GPU** | Intel Arc Pro B50 with 16 GB VRAM – suitable for LLM workloads and Plex transcoding |
 | **Mainboard** | Gigabyte B550M AORUS ELITE AX – stable, well-equipped, and future-proof |
 | **Cooler** | NZXT low-profile CPU cooler – quiet and space-saving |
 | **Case** | Jonsbo N4 NAS case – compact design with room for multiple 3.5" HDDs |
@@ -41,9 +41,10 @@ This guide explains how I got my **Intel Arc Pro B50** graphics card working on 
 
 ### 1. Move NVMe to chipset M.2 slot
 
-In my case the NVMe drive needed to be installed in the **chipset M.2 slot** instead of the CPU M.2 slot.  
+In this setup, the NVMe drive had to be installed in the **chipset M.2 slot** instead of the CPU-connected M.2 slot.
 
-> ⚠️ **Warning:** The Intel Arc Pro B50 uses **PCI Express 5.0 x8**, so using it in a PCIe slot below version 3 may cause issues.
+> ⚠️ **Warning:**  
+> The Intel Arc Pro B50 uses **PCI Express 5.0 x8**. Installing it in a PCIe slot with insufficient bandwidth (e.g. below PCIe 3.0) may lead to reduced performance or compatibility issues.
 
 ---
 
@@ -66,7 +67,7 @@ apt install firmware-intel-graphics
 ```
 
 ### 4. Upgrade to Kernel 6.16+
-With Kernel 6.16+, you can monitor GPU parameters such as temperature, fan speed, and utilization using `nvtop`. Run with `sudo nvtop`. This kernel version also provides improved driver compatibility with Intel BattleMage GPUs.
+With kernel version **6.16 or newer**, GPU parameters such as temperature, fan speed, and utilization can be monitored using `nvtop`. Run with `sudo nvtop`. This kernel version also provides improved driver compatibility with Intel BattleMage GPUs.
 
 ```bash
 echo "deb http://deb.debian.org/debian/ trixie-backports main contrib non-free" | sudo tee /etc/apt/sources.list.d/backports.list
@@ -89,11 +90,12 @@ wget https://registrationcenter-download.intel.com/akdlm/IRC_NAS/bd1d0273-a931-4
 sudo sh ./intel-oneapi-base-toolkit-2025.2.0.592_offline.sh -a --silent --eula accept
 ```
 
-> ⚠️ After installing the new kernel or oneAPI toolkit, a system reboot is recommended.
+> ⚠️ **Note:**  
+> After installing a new kernel or the oneAPI toolkit, a system reboot is strongly recommended.
 
 ---
-## Ollama (inside a Ubuntu 24.04 Docker-Container) and Open-WebUI
-I was not able to run Ollama on Debian 13 with the Intel Arc Pro B50 due to no drivers from Intel. 
+## Ollama (inside an Ubuntu 24.04 Docker-Container) and Open-WebUI
+At the time of writing, Ollama cannot be run natively on Debian 13 with the Intel Arc Pro B50 due to missing official driver support from Intel.
 
 > ⚠️ This setup is based on the 
 > [Intel IPEX LLM Quickstart guide](https://github.com/intel/ipex-llm/blob/main/docs/mddocs/Quickstart/ollama_portable_zip_quickstart.md#linux-quickstart) 
@@ -101,12 +103,12 @@ I was not able to run Ollama on Debian 13 with the Intel Arc Pro B50 due to no d
 > [Installing Client GPUs on Ubuntu Desktop](https://dgpu-docs.intel.com/driver/client/overview.html).
 
 <p align="center">
-  <img src="ressources/webui.jpg" width="500" alt="Open WebUI with Ollama backend on Intel Arc Pro B50">
+  <img src="resources/webui.jpg" width="500" alt="Open WebUI with Ollama backend on Intel Arc Pro B50">
   <br>
   <sub><em>Open WebUI with Ollama backend on Intel Arc Pro B50 </em></sub>
 </p>
 
-### Setup a prepared Compose file which is running Ollama
+### Running Ollama using a prepared Docker Compose setup
 This guide explains how to run **Ollama IPEX-LLM** with an **Intel Arc Pro B50** GPU inside a Docker container on Debian 13.
 
 Required files:
@@ -129,7 +131,7 @@ Run the Container:
 docker compose up -d
 ```
 
-You can try if Ollama is working by either checking http://<HOST_IP>::11434 or you can run this command:
+You can try if Ollama is working by either checking http://<HOST_IP>:11434 or you can run this command:
 ```bash
 docker exec -it ollama ./ollama -v
 ```
