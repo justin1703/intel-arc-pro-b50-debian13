@@ -141,7 +141,7 @@ Open-WebUI should now be running on "http://<HOST_IP>:3000".
 ---
 
 <p align="center">
-  <img src="ressources/nvtop.jpg" width="500" alt="Intel Arc Pro B50 in nvtop">
+  <img src="resources/nvtop.jpg" width="500" alt="Intel Arc Pro B50 in nvtop">
   <br>
   <sub><em>Intel Arc Pro B50 in nvtop when running deepseek-r1:14b</em></sub>
 </p>
